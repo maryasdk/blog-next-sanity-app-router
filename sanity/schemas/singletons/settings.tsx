@@ -18,12 +18,11 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "description",
-      description:
-        "Used both for the <meta> description tag for SEO, and the blog subheader.",
-      title: "Description",
+      name: "subheader",
+      description: "Used for the blog subheader.",
+      title: "Subheader",
       type: "array",
-      initialValue: demo.description,
+      initialValue: demo.subheader,
       of: [
         defineArrayMember({
           type: "block",
@@ -49,6 +48,25 @@ export default defineType({
           },
         }),
       ],
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "introTitle",
+      description:
+        "Used for the title of the website introduction on the Home screen.",
+      title: "Introduction Title",
+      type: "string",
+      initialValue: demo.introTitle,
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "introContent",
+      description:
+        "Used for the content of the website introduction on the Home screen.",
+      title: "Introduction Content",
+      type: "string",
+      initialValue: demo.introContent,
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "footer",

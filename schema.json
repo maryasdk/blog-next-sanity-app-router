@@ -854,7 +854,7 @@
         },
         "optional": true
       },
-      "description": {
+      "subheader": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
@@ -993,6 +993,20 @@
               }
             }
           }
+        },
+        "optional": true
+      },
+      "introTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "introContent": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       },

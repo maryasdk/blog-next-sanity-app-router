@@ -8,27 +8,27 @@ import MoreStories from "./more-stories";
 import Onboarding from "./onboarding";
 import PortableText from "./portable-text";
 
-import type { HeroQueryResult } from "@/sanity.types";
-import * as demo from "@/sanity/lib/demo";
+import type { HeroQueryResult, Settings } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { heroQuery, settingsQuery } from "@/sanity/lib/queries";
 
-function Intro(props: { title: string | null | undefined; description: any }) {
-  const title = props.title || demo.title;
-  const description = props.description?.length
-    ? props.description
-    : demo.description;
+function Intro({ settings }: { settings: Settings }) {
+  const { title, subheader, introTitle, introContent } = settings;
   return (
-    <section className="mt-16 mb-16 flex flex-col items-center lg:mb-12 lg:flex-row lg:justify-between">
-      <h1 className="text-balance text-6xl font-bold leading-tight tracking-tighter lg:pr-8 lg:text-8xl">
-        {title || demo.title}
-      </h1>
-      <h2 className="text-pretty mt-5 text-center text-lg lg:pl-8 lg:text-left">
-        <PortableText
-          className="prose-lg"
-          value={description?.length ? description : demo.description}
-        />
-      </h2>
+    <section className="mt-16 mb-16">
+      <div className="flex flex-col items-center lg:mb-12 lg:flex-row lg:justify-between">
+        <h1 className="text-balance text-6xl font-bold leading-tight tracking-tighter lg:pr-8 lg:text-8xl">
+          {title}
+        </h1>
+        <h2 className="text-pretty mt-5 text-center text-lg lg:pl-8 lg:text-left">
+          <PortableText className="prose-lg" value={subheader as any} />
+        </h2>
+      </div>
+      <div className="my-20">
+        <h2 className="text-2xl font-bold">{introTitle}</h2>
+        <br />
+        <p>{introContent}</p>
+      </div>
     </section>
   );
 }
@@ -83,7 +83,7 @@ export default async function Page() {
 
   return (
     <div className="container mx-auto px-5">
-      <Intro title={settings?.title} description={settings?.description} />
+      <Intro settings={settings as Settings} />
       {heroPost ? (
         <HeroPost
           title={heroPost.title}
