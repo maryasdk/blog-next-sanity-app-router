@@ -40,7 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${title}`,
       default: title,
     },
-    ...(subheader && { description: toPlainText(subheader) }),
+    ...(subheader && { description: toPlainText(subheader as any) }),
     openGraph: {
       images: ogImage ? [ogImage] : [],
     },
