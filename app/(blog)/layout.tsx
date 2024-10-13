@@ -1,18 +1,15 @@
 import "../globals.css";
 
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
+import { MdOutlineEmail } from "react-icons/md";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import {
-  VisualEditing,
-  toPlainText,
-  type PortableTextBlock,
-} from "next-sanity";
+import { VisualEditing, toPlainText } from "next-sanity";
 import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
 import { Suspense } from "react";
 
 import AlertBanner from "./alert-banner";
-import PortableText from "./portable-text";
 
 import * as demo from "@/sanity/lib/demo";
 import { sanityFetch } from "@/sanity/lib/fetch";
@@ -43,7 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${title}`,
       default: title,
     },
-    description: toPlainText(subheader),
+    ...(subheader && { description: toPlainText(subheader) }),
     openGraph: {
       images: ogImage ? [ogImage] : [],
     },
@@ -57,38 +54,45 @@ const inter = Inter({
 });
 
 async function Footer() {
-  const data = await sanityFetch({ query: settingsQuery });
-  const footer = data?.footer || [];
-
   return (
-    <footer className="bg-accent-1 border-accent-2 border-t">
-      <div className="container mx-auto px-5">
-        {footer.length > 0 ? (
-          <PortableText
-            className="prose-sm text-pretty bottom-0 w-full max-w-none bg-white py-12 text-center md:py-20"
-            value={footer as PortableTextBlock[]}
-          />
-        ) : (
-          <div className="flex flex-col items-center py-28 lg:flex-row">
-            <h3 className="mb-10 text-center text-4xl font-bold leading-tight tracking-tighter lg:mb-0 lg:w-1/2 lg:pr-4 lg:text-left lg:text-5xl">
-              Built with Next.js.
-            </h3>
-            <div className="flex flex-col items-center justify-center lg:w-1/2 lg:flex-row lg:pl-4">
-              <a
-                href="https://nextjs.org/docs"
-                className="mx-3 mb-6 border border-black bg-black py-3 px-12 font-bold text-white transition-colors duration-200 hover:bg-white hover:text-black lg:mb-0 lg:px-8"
-              >
-                Read Documentation
-              </a>
-              <a
-                href="https://github.com/vercel/next.js/tree/canary/examples/cms-sanity"
-                className="mx-3 font-bold hover:underline"
-              >
-                View on GitHub
-              </a>
-            </div>
+    <footer className="flex justify-center border border-gray-200 bg-gray-50">
+      <div className="mb-12 mt-14 grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl mx-6">
+        <div className="flex flex-col">
+          <h3 className="font-bold mb-4">About Me</h3>
+          <div className="text-gray-700">
+            <p>Lover of Life. Seeker of Joy.</p>
           </div>
-        )}
+        </div>
+        <div className="flex flex-col">
+          <h3 className="font-bold mb-4">Drop By</h3>
+          <div className="text-gray-700">
+            <p>Toulouse, Batroun, or elsewhere</p>
+          </div>
+        </div>
+        <div className="flex flex-col">
+          <h3 className="font-bold mb-4">Get in Touch</h3>
+          <div className="flex flex-row gap-6">
+            <a href="mailto:marya.sdk@gmail.com" aria-label="Send me an email">
+              <MdOutlineEmail className="fill-gray-400" size={25} />
+            </a>
+            <a
+              href={"https://www.linkedin.com/in/marya-sdk/"}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Follow me on Linkedin"
+            >
+              <FaLinkedin className="fill-gray-400" size={25} />
+            </a>
+            <a
+              href={"https://www.instagram.com/maryasadek/"}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Follow me on Instagram"
+            >
+              <FaInstagram className="fill-gray-400" size={25} />
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );
