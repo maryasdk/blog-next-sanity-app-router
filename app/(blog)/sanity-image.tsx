@@ -1,6 +1,7 @@
 import { urlForImage } from "@/sanity/lib/utils";
 import type { SanityAsset } from "@sanity/image-url/lib/types/types";
 import { Image } from "next-sanity/image";
+import { getImageDimensions, SanityImageAsset } from "@sanity/asset-utils";
 
 interface Props {
   asset: SanityAsset;
@@ -10,9 +11,15 @@ interface Props {
 
 export const SanityImage = (props: Props) => {
   const { asset, alt, caption } = props;
+  const imgObj = {
+    _type: "image",
+    alt,
+    asset: asset as SanityImageAsset,
+  };
+  const { width, height } = getImageDimensions(imgObj);
   const src = urlForImage({ _type: "image", alt, asset })
-    ?.height(1000)
-    .width(2000)
+    ?.height(height)
+    .width(width)
     .url();
 
   if (!src) {
@@ -24,8 +31,8 @@ export const SanityImage = (props: Props) => {
       <Image
         src={src}
         alt={alt || ""}
-        width={2000}
-        height={1000}
+        width={width}
+        height={height}
         sizes="(max-width: 800px) 100vw, 800px"
       />
       {caption && (
