@@ -10,7 +10,10 @@ interface Props {
 
 export const SanityImage = (props: Props) => {
   const { asset, alt, caption } = props;
-  const src = urlForImage({ asset })?.height(1000).width(2000).url();
+  const src = urlForImage({ _type: "image", alt, asset })
+    ?.height(1000)
+    .width(2000)
+    .url();
 
   if (!src) {
     return null;
