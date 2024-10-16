@@ -1,15 +1,16 @@
 import createImageUrlBuilder from "@sanity/image-url";
 
 import { dataset, projectId } from "@/sanity/lib/api";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 const imageBuilder = createImageUrlBuilder({
   projectId: projectId || "",
   dataset: dataset || "",
 });
 
-export const urlForImage = (source: any) => {
+export const urlForImage = (source: SanityImageSource) => {
   // Ensure that source image contains a valid reference
-  if (!source?.asset?._ref) {
+  if (typeof source !== "string" && "asset" in source && !source.asset._ref) {
     return undefined;
   }
 
@@ -25,7 +26,7 @@ export function resolveOpenGraphImage(image: any, width = 1200, height = 627) {
 
 export function resolveHref(
   documentType?: string,
-  slug?: string,
+  slug?: string
 ): string | undefined {
   switch (documentType) {
     case "post":
