@@ -1,6 +1,6 @@
 import { urlForImage } from "@/sanity/lib/utils";
 import type { SanityAsset } from "@sanity/image-url/lib/types/types";
-import Image from "next/image";
+import { Image } from "next-sanity/image";
 
 interface Props {
   asset: SanityAsset;
