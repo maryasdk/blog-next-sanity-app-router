@@ -10,8 +10,11 @@ const imageBuilder = createImageUrlBuilder({
 
 export const urlForImage = (source: SanityImageSource) => {
   // Ensure that source image contains a valid reference
-  console.log("urlForImage source", source);
-  if (typeof source !== "string" && "asset" in source && !source.asset._ref) {
+  if (
+    typeof source === "string" ||
+    !("asset" in source) ||
+    !source.asset._ref
+  ) {
     return undefined;
   }
 
