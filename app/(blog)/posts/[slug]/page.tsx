@@ -15,10 +15,9 @@ import * as demo from "@/sanity/lib/demo";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { postQuery, settingsQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
+import { PageProps } from "@/types";
 
-type Props = {
-  params: { slug: string };
-};
+interface Props extends PageProps<{ slug: string }> {}
 
 const postSlugs = defineQuery(
   `*[_type == "post" && defined(slug.current)]{"slug": slug.current}`
