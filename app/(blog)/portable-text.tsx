@@ -13,6 +13,7 @@ import {
   type PortableTextComponents,
   type PortableTextBlock,
 } from "next-sanity";
+import { SanityImage } from "./sanity-image";
 
 export default function CustomPortableText({
   className,
@@ -37,6 +38,11 @@ export default function CustomPortableText({
             {children}
           </a>
         );
+      },
+    },
+    types: {
+      image: ({ value }) => {
+        return <SanityImage {...value} />;
       },
     },
   };

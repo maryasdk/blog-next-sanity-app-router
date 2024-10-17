@@ -2,9 +2,17 @@
  * Demo data used as placeholders and initial values for the blog
  */
 
-export const title = "Blog.";
+import { Settings } from "@/sanity.types";
 
-export const description = [
+export const title = "Marya Shares";
+export const metaDescription =
+  "Marya Shares, compilations from Life! A knowledge-sharing space for diverse topics that I’m either interested in, or have had the chance to extensively research. I do not have one single identity and neither does this blog.";
+
+export const introTitle = "Welcome to my Sharing Blog";
+export const introContent =
+  "Hi, my name is Marya, and I’m, in the briefest of terms, a Software Engineer from Lebanon. I created this blog as a knowledge-sharing space for diverse of topics that I’m either interested in, or have had the chance to extensively research. I do not have one single identity and neither does this blog. I believe in the power of community, sharing, and small acts of kindness. Help me enrich this hub by contacting me by email or through my social media accounts.";
+
+export const subheader: Settings["subheader"] = [
   {
     _key: "9f1a629887fd",
     _type: "block",
@@ -13,47 +21,11 @@ export const description = [
         _key: "4a58edd077880",
         _type: "span",
         marks: [],
-        text: "A statically generated blog example using ",
-      },
-      {
-        _key: "4a58edd077881",
-        _type: "span",
-        marks: ["ec5b66c9b1e0"],
-        text: "Next.js",
-      },
-      {
-        _key: "4a58edd077882",
-        _type: "span",
-        marks: [],
-        text: " and ",
-      },
-      {
-        _key: "4a58edd077883",
-        _type: "span",
-        marks: ["1f8991913ea8"],
-        text: "Sanity",
-      },
-      {
-        _key: "4a58edd077884",
-        _type: "span",
-        marks: [],
-        text: ".",
-      },
-    ],
-    markDefs: [
-      {
-        _key: "ec5b66c9b1e0",
-        _type: "link",
-        href: "https://nextjs.org/",
-      },
-      {
-        _key: "1f8991913ea8",
-        _type: "link",
-        href: "https://sanity.io/",
+        text: "Compilations from Life.",
       },
     ],
     style: "normal",
   },
 ];
 
-export const ogImageTitle = "A Next.js Blog with a Native Authoring Experience";
+export const ogImageTitle = "Marya Shares";
