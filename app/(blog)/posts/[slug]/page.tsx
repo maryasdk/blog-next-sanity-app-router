@@ -1,4 +1,3 @@
-import { defineQuery } from "next-sanity";
 import type { Metadata, ResolvingMetadata } from "next";
 import { type PortableTextBlock } from "next-sanity";
 import Link from "next/link";
@@ -13,19 +12,15 @@ import PortableText from "../../portable-text";
 
 import * as demo from "@/sanity/lib/demo";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { postQuery, settingsQuery } from "@/sanity/lib/queries";
+import { postQuery, postSlugsQuery, settingsQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
 import { PageProps } from "@/types";
 
 interface Props extends PageProps<{ slug: string }> {}
 
-const postSlugs = defineQuery(
-  `*[_type == "post" && defined(slug.current)]{"slug": slug.current}`
-);
-
 export async function generateStaticParams() {
   return await sanityFetch({
-    query: postSlugs,
+    query: postSlugsQuery,
     perspective: "published",
     stega: false,
   });

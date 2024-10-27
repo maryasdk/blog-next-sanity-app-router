@@ -32,3 +32,7 @@ export const postQuery = defineQuery(`
     ${postFields}
   }
 `);
+
+export const postSlugsQuery = defineQuery(
+  `*[_type == "post" && defined(slug.current)]{"slug": slug.current}`
+);
