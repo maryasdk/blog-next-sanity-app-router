@@ -1,9 +1,10 @@
+import { Footer } from "@/components/layout";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 
-export default function Footer() {
+export default function BlogFooter() {
   return (
-    <footer className="flex justify-center border border-gray-200 bg-gray-50">
+    <Footer>
       <div className="mb-12 mt-14 grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl mx-6">
         <div className="flex flex-col">
           <h3 className="font-bold mb-4">About Me</h3>
@@ -42,6 +43,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </Footer>
   );
 }
