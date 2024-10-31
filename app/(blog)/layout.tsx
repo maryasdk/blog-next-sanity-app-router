@@ -59,11 +59,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} bg-white text-black`}>
       <body>
-        <section className="min-h-screen">
+        <div className="min-h-screen">
           {draftMode().isEnabled && <AlertBanner />}
-          <main>{children}</main>
+          {children}
           <BlogFooter />
-        </section>
+        </div>
         {draftMode().isEnabled && <VisualEditing />}
         <SpeedInsights />
       </body>
