@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 
 interface FooterProps {
-  className: React.HTMLAttributes<HTMLElement>["className"];
+  className?: React.HTMLAttributes<HTMLElement>["className"];
   children: React.ReactNode;
 }
 
