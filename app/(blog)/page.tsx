@@ -14,7 +14,7 @@ function IntroHeader({ settings }: { settings: Settings }) {
     <header className="mt-16 mb-16">
       <div className="container mx-auto px-5">
         <div className="flex flex-col items-center lg:mb-12 lg:flex-row lg:justify-between">
-          <h1 className="text-balance text-6xl font-bold leading-tight tracking-tighter lg:pr-8 lg:text-8xl">
+          <h1 className="text-balance text-center md:text-left text-6xl font-bold leading-tight tracking-tighter lg:pr-8 lg:text-8xl">
             {title}
           </h1>
           <h2 className="text-pretty mt-5 text-center text-lg lg:pl-8 lg:text-left">
