@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import { VisualEditing, toPlainText } from "next-sanity";
 import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
-import { Suspense } from "react";
 
 import AlertBanner from "./alert-banner";
 
@@ -13,7 +12,7 @@ import * as demo from "@/sanity/lib/demo";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { settingsQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
-import Footer from "./footer";
+import BlogFooter from "./blog-footer";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await sanityFetch({
@@ -60,11 +59,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} bg-white text-black`}>
       <body>
-        <section className="min-h-screen">
+        <div className="min-h-screen">
           {draftMode().isEnabled && <AlertBanner />}
-          <main>{children}</main>
-          <Footer />
-        </section>
+          {children}
+          <BlogFooter />
+        </div>
         {draftMode().isEnabled && <VisualEditing />}
         <SpeedInsights />
       </body>
