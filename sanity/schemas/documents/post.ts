@@ -66,6 +66,25 @@ export default defineType({
             },
           ],
         },
+        {
+          type: "object",
+          name: "googleMapIframe",
+          title: "Google Map Iframe",
+          fields: [
+            {
+              name: "src",
+              type: "string",
+              title: "Iframe Source",
+              description: "The source URL for the Google Map iframe.",
+            },
+            {
+              name: "disableFullScreen",
+              type: "boolean",
+              title: "Disable Fullscreen",
+              description: "Disable fullscreen option for the iframe.",
+            },
+          ],
+        },
       ],
     }),
     defineField({

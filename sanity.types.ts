@@ -106,6 +106,11 @@ export type Post = {
     alt?: string;
     _type: "image";
     _key: string;
+  } | {
+    src?: string;
+    disableFullScreen?: boolean;
+    _type: "googleMapIframe";
+    _key: string;
   }>;
   excerpt?: string;
   coverImage?: {
@@ -443,6 +448,11 @@ export type HeroQueryResult = {
     _type: "block";
     _key: string;
   } | {
+    src?: string;
+    disableFullScreen?: boolean;
+    _type: "googleMapIframe";
+    _key: string;
+  } | {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -546,6 +556,11 @@ export type PostQueryResult = {
     }>;
     level?: number;
     _type: "block";
+    _key: string;
+  } | {
+    src?: string;
+    disableFullScreen?: boolean;
+    _type: "googleMapIframe";
     _key: string;
   } | {
     asset?: {

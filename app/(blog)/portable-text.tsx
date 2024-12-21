@@ -14,6 +14,7 @@ import {
   type PortableTextBlock,
 } from "next-sanity";
 import { SanityImage } from "./sanity-image";
+import GoogleMapIframe from "./google-map-iframe";
 
 export default function CustomPortableText({
   className,
@@ -43,6 +44,9 @@ export default function CustomPortableText({
     types: {
       image: ({ value }) => {
         return <SanityImage {...value} />;
+      },
+      googleMapIframe: ({ value }) => {
+        return <GoogleMapIframe {...value} />;
       },
     },
   };
