@@ -2,17 +2,23 @@ import { Main, Footer, Header } from "@/components/layout";
 import Link from "next/link";
 import ClientButton from "./client-button";
 
-const getData: any = async () => {
+interface TimeApiResponse {
+  date: string;
+  time: string;
+  timeZone: string;
+}
+
+const getData = async () => {
   let data;
 
   try {
     const res = await fetch(
       "https://timeapi.io/api/time/current/zone?timeZone=Europe%2FAmsterdam",
       {
-        cache: "no-store", // Ensure SSR on each request
+        cache: "no-store", // Ensure refetch on each server request
       }
     );
-    data = await res.json();
+    data = (await res.json()) as TimeApiResponse;
   } catch (err) {
     console.error(err);
   }
@@ -35,9 +41,9 @@ export default async function Ssr() {
           <strong>SSR Example</strong>
         </h1>
         <p>Date SSR</p>
-        <p>date: {data.date}</p>
-        <p>time: {data.time}</p>
-        <p>timeZone: {data.timeZone}</p>
+        <p>date: {data?.date}</p>
+        <p>time: {data?.time}</p>
+        <p>timeZone: {data?.timeZone}</p>
         <ClientButton />
       </Main>
       <Footer>
