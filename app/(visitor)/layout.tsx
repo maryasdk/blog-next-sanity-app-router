@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { VisualEditing, toPlainText } from "next-sanity";
 import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
+import { Analytics } from "@vercel/analytics/next";
 
 import AlertBanner from "./(blog)/alert-banner";
 
@@ -66,6 +67,7 @@ export default function RootLayout({
         </div>
         {draftMode().isEnabled && <VisualEditing />}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
