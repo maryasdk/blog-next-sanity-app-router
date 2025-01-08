@@ -3,7 +3,7 @@ export const metadata = {
   description: "Next JS Playground entry point",
 };
 
-export default function RootLayout({
+export default function PlaygroundLayout({
   children,
 }: {
   children: React.ReactNode;

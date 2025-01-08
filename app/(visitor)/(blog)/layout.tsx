@@ -1,0 +1,59 @@
+import type { Metadata } from "next";
+import { VisualEditing, toPlainText } from "next-sanity";
+import { draftMode } from "next/headers";
+
+import AlertBanner from "./alert-banner";
+
+import * as demo from "@/sanity/lib/demo";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { settingsQuery } from "@/sanity/lib/queries";
+import { resolveOpenGraphImage } from "@/sanity/lib/utils";
+import BlogFooter from "./blog-footer";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await sanityFetch({
+    query: settingsQuery,
+    // Metadata should never contain stega
+    stega: false,
+  });
+  const title = settings?.title || demo.title;
+  const subheader = settings?.subheader || demo.subheader;
+
+  const ogImage = resolveOpenGraphImage(settings?.ogImage);
+  let metadataBase: URL | undefined = undefined;
+  try {
+    metadataBase = settings?.ogImage?.metadataBase
+      ? new URL(settings.ogImage.metadataBase)
+      : undefined;
+  } catch {
+    // ignore
+  }
+  return {
+    metadataBase,
+    title: {
+      template: `%s | ${title}`,
+      default: title,
+    },
+    ...(subheader && { description: toPlainText(subheader as any) }),
+    openGraph: {
+      images: ogImage ? [ogImage] : [],
+    },
+  };
+}
+
+export default function BlogLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <>
+      <div className="min-h-screen">
+        {draftMode().isEnabled && <AlertBanner />}
+        {children}
+        <BlogFooter />
+      </div>
+      {draftMode().isEnabled && <VisualEditing />}
+    </>
+  );
+}
