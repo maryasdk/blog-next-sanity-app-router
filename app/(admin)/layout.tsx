@@ -10,7 +10,7 @@ const inter = Inter({
 
 export { metadata, viewport } from "next-sanity/studio";
 
-export default function RootLayout({
+export default function RootAdminLayout({
   children,
 }: {
   children: React.ReactNode;

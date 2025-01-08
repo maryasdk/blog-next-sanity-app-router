@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
-import MoreStories from "./more-stories";
-import PortableText from "./portable-text";
+import MoreStories from "./(blog)/more-stories";
+import PortableText from "./(blog)/portable-text";
 
 import type { Settings } from "@/sanity.types";
 import { sanityFetch } from "@/sanity/lib/fetch";
