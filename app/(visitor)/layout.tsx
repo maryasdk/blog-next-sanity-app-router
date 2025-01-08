@@ -6,13 +6,13 @@ import { VisualEditing, toPlainText } from "next-sanity";
 import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
 
-import AlertBanner from "./alert-banner";
+import AlertBanner from "./(blog)/alert-banner";
 
 import * as demo from "@/sanity/lib/demo";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { settingsQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
-import BlogFooter from "./blog-footer";
+import BlogFooter from "./(blog)/blog-footer";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await sanityFetch({
